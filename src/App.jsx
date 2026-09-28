@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { ShoppingBag, Minus, Plus, X, CheckCircle2, MessageCircle, Sparkles, Leaf, Truck, Trash2 } from "lucide-react";
+import Gallery from "./Gallery.jsx";
 import Modal from "./Modal.jsx";
+
 import { PRODUCT, WHATSAPP_NUMBER, SHIPPING_FEE, MAX_QTY, inr } from "./config.js";
 
 const EMPTY_FORM = { name: "", phone: "", address: "", pincode: "" };
@@ -119,8 +121,8 @@ export default function App() {
     )), []
   );
 
-  const img = PRODUCT.image && `${import.meta.env.BASE_URL}${PRODUCT.image}`;
-
+const photos = PRODUCT.images.map((f) => `${import.meta.env.BASE_URL}${f}`);
+const img = photos[0];
   return (
     <div className="app">
       <a className="skip-link" href="#main">Skip to content</a>
@@ -173,9 +175,9 @@ export default function App() {
 
           <div className="product-visual">
             <div className="blob" />
-            {img ? (
-              <img className="product-photo" src={img} alt={`${PRODUCT.name}, ${PRODUCT.weight}`} width="350" height="392" />
-            ) : (
+            {photos.length ? (
+  <Gallery photos={photos} name={PRODUCT.name} />
+) : (
               <div className="product-placeholder">
                 <div className="placeholder-inner">
                   <span>YOUR SOAP PHOTO</span>
