@@ -174,7 +174,7 @@ const img = photos[0];
           </div>
 
           <div className="product-visual">
-            <div className="blob" />
+            {/* <div className="blob" /> */}
             {photos.length ? (
   <Gallery photos={photos} name={PRODUCT.name} />
 ) : (
