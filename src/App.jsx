@@ -31,7 +31,8 @@ import {
   inr,
   REVIEW_FORM_URL,
   WHOLESALE,
-  CONTACT,LOGO
+  CONTACT,LOGO,
+  REVIEWS_PAGE_SIZE
 } from "./config.js";
 
 const EMPTY_FORM = { name: "", phone: "", address: "", pincode: "" };
@@ -118,6 +119,7 @@ export default function App() {
   const [order, setOrder] = useState(null);
   const liveReviews = useReviews();
 const allReviews = liveReviews.length ? liveReviews : REVIEWS;
+const [shown, setShown] = useState(REVIEWS_PAGE_SIZE);
   const [page, setPage] = useState(pageFromHash);
   useEffect(() => {
     const onHash = () => {
@@ -453,50 +455,67 @@ const sendContact = (e) => {
             <span className="eyebrow">CUSTOMER LOVE</span>
             <h2>What customers say</h2>
           </div>
-          <ul className="card-grid reviews">
-            {" "}
-            {allReviews.map((r, i) => (
-              <li className="card review" key={i}>
-                <div
-                  className="stars"
-                  role="img"
-                  aria-label={`${r.rating} out of 5 stars`}
-                >
-                  {[1, 2, 3, 4, 5].map((n) => (
-                    <Star
-                      key={n}
-                      size={17}
-                      className={n <= r.rating ? "on" : ""}
-                    />
-                  ))}
-                </div>
-                <p>“{r.text}”</p>
-                {r.photos?.length > 0 && (
-                  <div className="review-photos">
-                    {r.photos.map((f) => (
-                      <img
-                        key={f}
-                        src={`${base}${f}`}
-                        alt={`Photo from ${r.name}`}
-                        loading="lazy"
-                      />
-                    ))}
-                  </div>
-                )}
-                <ul className="card-grid reviews"></ul>
+
+          {allReviews.length > 0 ? (
+            <>
+              <ul className="card-grid reviews">
+                {allReviews.slice(0, shown).map((r, i) => (
+                  <li className="card review" key={i}>
+                    <div
+                      className="stars"
+                      role="img"
+                      aria-label={`${r.rating} out of 5 stars`}
+                    >
+                      {[1, 2, 3, 4, 5].map((n) => (
+                        <Star
+                          key={n}
+                          size={17}
+                          className={n <= r.rating ? "on" : ""}
+                        />
+                      ))}
+                    </div>
+                    <p>“{r.text}”</p>
+                    {r.photos?.length > 0 && (
+                      <div className="review-photos">
+                        {r.photos.map((f) => (
+                          <img
+                            key={f}
+                            src={`${base}${f}`}
+                            alt={`Photo from ${r.name}`}
+                            loading="lazy"
+                          />
+                        ))}
+                      </div>
+                    )}
+                    <div className="reviewer">
+                      <strong>{r.name}</strong>
+                      {r.place && <span className="muted">{r.place}</span>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              {shown < allReviews.length && (
                 <div className="center">
-                  <a className="primary" href="#/review">
-                    <Star size={18} /> Write a review
-                  </a>
+                  <button
+                    className="secondary"
+                    onClick={() => setShown((n) => n + REVIEWS_PAGE_SIZE)}
+                  >
+                    Show more reviews ({allReviews.length - shown} more)
+                  </button>
                 </div>
-                <div className="reviewer">
-                  <strong>{r.name}</strong>
-                  <span className="muted">{r.place}</span>
-                </div>
-                {r.sample && <span className="sample-tag">Sample review</span>}
-              </li>
-            ))}
-          </ul>
+              )}
+            </>
+          ) : (
+            <p className="no-reviews">
+              No reviews yet. Be the first to share your experience!
+            </p>
+          )}
+
+          <div className="center">
+            <a className="primary" href="#/review">
+              <Star size={18} /> Write a review
+            </a>
+          </div>
         </section>
 
         <section className="section" id="contact" hidden={page !== "contact"}>

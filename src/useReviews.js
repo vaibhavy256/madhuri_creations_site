@@ -38,6 +38,7 @@ export default function useReviews() {
               rating: Math.min(5, Math.max(1, parseInt(r[s], 10) || 5)),
               text: r[x].trim(),
             }))
+            .reverse()
         );
       })
       .catch(() => {});

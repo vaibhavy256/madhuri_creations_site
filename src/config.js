@@ -40,11 +40,10 @@ export const HAMPER = {
 };
 
 // SAMPLE reviews: replace with your customers' real reviews, then delete "sample: true".
-export const REVIEWS = [
-  { name: "Customer name", place: "City", rating: 5, text: "Write your customer's real review here.", sample: true },
-  { name: "Customer name", place: "City", rating: 5, text: "Paste a genuine message from WhatsApp or Instagram.", sample: true },
-  { name: "Customer name", place: "City", rating: 4, text: "Three to six reviews look best on the page.", sample: true },
-];
+// Reviews added by hand (optional). Reviews from your Google Sheet show automatically.
+export const REVIEWS = [];
+
+export const REVIEWS_PAGE_SIZE = 6; // how many reviews show before "Show more"
 
 export const CATALOG = [
   { id: PRODUCT.id, name: PRODUCT.name, price: PRODUCT.price, sub: PRODUCT.weight },
