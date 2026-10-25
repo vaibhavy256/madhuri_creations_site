@@ -18,6 +18,7 @@ import {
 import Modal from "./Modal.jsx";
 import Gallery from "./Gallery.jsx";
 import useReviews from "./useReviews.js";
+
 import {
   PRODUCT,
   CANDLES,
@@ -30,7 +31,7 @@ import {
   inr,
   REVIEW_FORM_URL,
   WHOLESALE,
-  CONTACT,
+  CONTACT,LOGO
 } from "./config.js";
 
 const EMPTY_FORM = { name: "", phone: "", address: "", pincode: "" };
