@@ -102,3 +102,5 @@ input[aria-invalid="true"],textarea[aria-invalid="true"]{border-color:#c0523f}.f
 .brand-logo{width:46px;height:46px;border-radius:50%;object-fit:cover;background:#fff;border:2px solid var(--gold)}
 .no-reviews{text-align:center;color:var(--muted);margin:0 0 24px}
 .card-grid+.center,.no-reviews+.center{margin-top:28px}
+footer{flex-wrap:wrap}
+.copyright{flex-basis:100%;text-align:center;margin-top:6px;font-size:12px}

@@ -672,9 +672,10 @@ const sendContact = (e) => {
       </main>
 
       <footer>
-        <strong>MADHURI NATURALS</strong>
-        <span>Handmade soaps &amp; candles • Order on WhatsApp</span>
-      </footer>
+  <strong>MADHURI NATURALS</strong>
+  <span>Handmade soaps &amp; candles • Order on WhatsApp</span>
+  <span className="copyright">© {new Date().getFullYear()} Madhuri Naturals. All rights reserved.</span>
+</footer>
 
       {panel === "cart" && (
         <Modal onClose={close} label="Your cart" className="drawer">

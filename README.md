@@ -34,3 +34,5 @@ All store settings live in `src/config.js`.
 This starter version does **not** need a backend just to show the product and collect an order request. The form currently hands the order to WhatsApp.
 
 For automatic online payments, order storage, admin order management, inventory, customer accounts, and automatic courier/tracking updates, a backend or a commerce/payment service should be added later.
+
+© 2026 Madhuri Naturals. All rights reserved.
